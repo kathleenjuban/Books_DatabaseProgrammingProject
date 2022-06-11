@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "TopFiveProducts";
+}
+
+@*Table showing top five products with the highest price*@
+<h2>Top Five Highest-Priced Products</h2>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th>Product Code</th>
+            <th>Product Description</th>
+            <th>Product OnHand Quantity</th>
+            <th>Product Unit Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+        <tr>
+            <td>@product.ProductCode</td>
+            <td>@product.Description</td>
+            <td>@product.OnHandQuantity</td>
+            <td class="topItems">@product.UnitPrice.ToString("C")</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Home/Statistics">Back to Previous Page</a>
+</div>
+
+

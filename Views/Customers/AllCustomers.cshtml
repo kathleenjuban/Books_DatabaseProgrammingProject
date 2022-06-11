@@ -1,0 +1,69 @@
+﻿@model List<DBProg_A3.Models.Customer>
+@{
+    ViewBag.Title = "AllCustomers";
+}
+
+<h2>Customers Register</h2>
+
+@*Link to add a customer*@
+<a class="addNew" href="/Customers/UpsertCustomer">Add New</a>
+
+@*Search and sort a customer*@
+<div class="row">
+    <div class="col-md-3">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+    </div>
+    <div class="col-md-9">
+        <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+@*Table to create all customers view*@
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th class="cellHeading" id="custId" onclick="Sortable.Sort(0);">Customer ID</th>
+            <th class="cellHeading" onclick="Sortable.Sort(1);">Customer Name</th>
+            <th class="cellHeading" onclick="Sortable.Sort(2);">Customer Address</th>
+            <th class="cellHeading" onclick="Sortable.Sort(3);">Customer City</th>
+            <th class="cellHeading" id="custState" onclick="Sortable.Sort(4);">Customer State</th>
+            <th class="cellHeading" id="custZipCode" onclick="Sortable.Sort(5);">Customer ZipCode</th>
+            <th class="cellHeading" id="invoiceCount" onclick="Sortable.Sort(6);">Invoice Count</th> 
+            <th class="cellHeading">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+        <tr>
+            <td>@customer.CustomerID</td>
+            <td>@customer.Name</td>
+            <td>@customer.Address</td>
+            <td>@customer.City</td>
+            <td>@customer.State</td>
+            <td>@customer.ZipCode</td>
+            <td><a href="/Invoices/AllInvoices/">@customer.Invoices.Count</a></td>
+            <td>
+                <a href="/Customers/UpsertCustomer/@customer.CustomerID">Edit</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Home/Index/">Back to Home Page</a>
+</div>
+
+<div>
+    <a href="/Invoices/AllInvoices/">Back to Invoice Page</a>
+</div>
+
+<script>
+    Sortable.baseUrl = '/Customers/AllCustomers/';
+</script>
+
+
+
+
+

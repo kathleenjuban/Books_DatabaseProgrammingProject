@@ -1,0 +1,53 @@
+﻿@model List<DBProg_A3.Models.Invoice>
+@{
+    ViewBag.Title = "TopFiveInvoices";
+}
+
+<h2>Top Five Sales By Invoice</h2>
+
+@*<div class="row">
+        <div class="col-md-3">
+            <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+        </div>
+        <div class="col-md-9">
+            <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+        </div>
+    </div>*@
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th>Invoice ID</th>
+            <th>Customer Name</th>
+            <th>Invoice Date</th>
+            @*<th>Product Total</th>
+            <th>Sales Tax</th>
+            <th>Shipping Charges</th>*@
+            <th>Invoice Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td>@invoice.InvoiceID</td>
+                <td>@invoice.Customer.Name</td>
+                <td>@invoice.InvoiceDate</td>
+                @*<td>@invoice.ProductTotal.ToString("C")</td>
+                <td>@invoice.SalesTax.ToString("C")</td>
+                <td>@invoice.Shipping.ToString("C")</td>*@
+                <td class="topItems">@invoice.InvoiceTotal.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Home/Statistics">Back to Previous Page</a>
+</div>
+
+@*<script>
+        Sortable.baseUrl = '/Invoices/TopFiveInvoices/';
+    </script>*@
+
+

@@ -1,0 +1,66 @@
+﻿@model List<DBProg_A3.Models.Invoice>
+@{
+    ViewBag.Title = "AllInvoices";
+}
+
+<h2>Invoice Register</h2>
+
+@*Link to add an invoice*@
+<a class="addNew" href="/Invoices/UpsertInvoice">Add New</a>
+
+@*Search and sort an invoice*@
+<div class="row">
+    <div class="col-md-3">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+    </div>
+    <div class="col-md-9">
+        <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th class="cellHeading" onclick="Sortable.Sort(0);">Invoice ID</th>
+            <th class="cellHeading" onclick="Sortable.Sort(1);">Customer Name</th>
+            <th class="cellHeading" onclick="Sortable.Sort(2);">Invoice Date</th>
+            <th class="cellHeading" onclick="Sortable.Sort(3);">Product Total</th>
+            <th class="cellHeading" onclick="Sortable.Sort(4);">Sales Tax</th>
+            <th class="cellHeading" onclick="Sortable.Sort(5);">Shipping Charges</th>
+            <th class="cellHeading" id="totalInvoice" onclick="Sortable.Sort(6);">Invoice Total</th>
+            <th class="cellHeading">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td><a href="/InvoiceLineItems/AllInvoiceLineItems">@invoice.InvoiceID</a></td>
+                <td><a href="/Customers/AllCustomers/">@invoice.Customer.Name</a></td>
+                <td>@invoice.InvoiceDate.ToShortDateString()</td>
+                <td>@invoice.ProductTotal.ToString("C")</td>
+                <td>@invoice.SalesTax.ToString("C")</td>
+                <td>@invoice.Shipping.ToString("C")</td>
+                <td>@invoice.InvoiceTotal.ToString("C")</td>
+                <td>
+                    <a href="/Invoices/UpsertInvoice/@invoice.InvoiceID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Customers/AllCustomers/">Back to Customers Page</a>
+</div>
+
+<script>
+    Sortable.baseUrl = '/Invoices/AllInvoices/';
+</script>
+
+
+
+
+
+
+

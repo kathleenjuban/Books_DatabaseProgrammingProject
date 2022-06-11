@@ -1,0 +1,58 @@
+﻿@model List<DBProg_A3.Models.Product>
+@{
+    ViewBag.Title = "AllProducts";
+}
+
+<h2>Products List</h2>
+
+@*Link to add a product*@
+<a class="addNew" href="/Products/UpsertProduct">Add New</a>
+
+@*Search and sort a product*@
+<div class="row">
+    <div class="col-md-3">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+    </div>
+    <div class="col-md-9">
+        <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+@*Table to create all products view*@
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Product Code</th>
+            <th onclick="Sortable.Sort(1);">Product Description</th>
+            <th onclick="Sortable.Sort(2);">Product Unit Price</th>
+            <th onclick="Sortable.Sort(3);">Product OnHand Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductCode</td>
+                <td>@product.Description</td>
+                <td>@product.UnitPrice.ToString("C")</td>
+                <td>@product.OnHandQuantity</td>
+                <td>
+                    <a href="/Products/UpsertProduct/@product.ProductCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Home/Index/">Back to Home Page</a>
+</div>
+
+<script>
+    Sortable.baseUrl = '/Products/AllProducts/';
+</script>
+
+
+
+

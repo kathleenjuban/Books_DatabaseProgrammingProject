@@ -1,0 +1,48 @@
+﻿@model List<DBProg_A3.Models.State>
+@{
+    ViewBag.Title = "AllStates";
+}
+
+<h2>States List</h2>
+
+@*Link to add a state*@
+<a class="addNew" href="/States/UpsertState">Add New</a>
+
+@*Search and sort a state*@
+<div class="row">
+    <div class="col-md-3">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+    </div>
+    <div class="col-md-9">
+        <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+@*Table to create all states view*@
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">State Code</th>
+            <th onclick="Sortable.Sort(1);">State Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var state in Model)
+        {
+            <tr>
+                <td>@state.StateCode</td>
+                <td>@state.StateName</td>
+                <td>
+                    <a href="/States/UpsertState/@state.StateCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/States/AllStates/';
+</script>
+
+

@@ -1,0 +1,222 @@
+﻿.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: ghostwhite;
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+    border: solid thin;
+    border-radius: 8px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 40px
+}
+
+h2 {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+table {
+    border: solid thick gray;
+}
+
+th {
+    text-transform: uppercase;
+    text-align: center;
+    border: solid thin gray;
+    background-color: lightgrey
+}
+
+td {
+    text-align: center;
+    border: solid thin gray;
+}
+
+p:first-child {
+    font-size: large;
+    font-weight: 300;
+    margin-bottom: 30px
+}
+
+p:nth-child(2n+1) {
+    font-weight: 300;
+    margin-bottom: 10px
+}
+
+p:last-child {
+    font-size: medium;
+}
+
+#incidentDesc {
+    text-align: left;
+    width: 600px;
+}
+
+.incidentDate {
+    width: 210px;
+}
+
+#incidentTitle {
+    width: 275px;
+}
+
+#incidentID {
+    width: 110px;
+}
+
+.sortable th:hover {
+    cursor: pointer;
+}
+
+body {
+    background-color: lightsteelblue
+}
+
+.nav {
+    text-transform: uppercase
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+#txtSearch {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.addNew {
+    font-size: large !important;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.stateName {
+    width: 300px;
+    padding: 6px;
+    border-radius: 4px;
+    border-color: lightgray;
+}
+
+#txtSearchBtn {
+    padding: 12px;
+    text-transform: uppercase;
+}
+
+.descBox {
+    width: 600px;
+    height: 200px;
+}
+
+.statHeading {
+    text-transform: uppercase;
+    border: solid thin;
+    border-radius: 8px;
+    font-size: x-large;
+    font-weight: 700;
+    background-color: lightgrey;
+    padding: 12px;
+}
+
+#statMainHeading {
+    text-transform: uppercase;
+    border: dashed thin;
+    border-radius: 8px;
+    font-size: xx-large;
+    font-weight: 700;
+    background-color: lightgrey;
+    padding: 12px;
+    margin-bottom: 50px;
+}
+
+#statComments {
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: maroon
+}
+
+.topItems {
+    background-color: burlywood
+}
+
+#calcAdd, #calcMultiply {
+    border: solid thin white;
+    border-radius: 6px;
+    background-color: antiquewhite;
+    text-align: center;
+    padding: 6px;
+}
+
+.cellHeading {
+    color: maroon;
+    font-weight: 800;
+}
+
+#customerAddress, #customerCity, #customerZipCode {
+    background-color: lightgrey;
+}
+
+#totalInvoice, #totalItem {
+    background-color: antiquewhite;
+}
+
+#paymentRemarks {
+    padding: 10px;
+    border: solid thin white;
+    border-radius: 4px;
+    background-color: antiquewhite;
+    font-size: x-large !important;
+}
+
+#paymentHeading {
+    color: maroon;
+    font-size:xx-large;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+#paymentsLink {
+    font-size: x-large;
+    margin-left: 470px;
+    margin-top: 100px;
+}
+
+.headingOne {
+    margin-left: 35px;
+    font-size: large;
+    font-weight: 500;
+}
+
+.buttonOne {
+    margin-left: 200px;
+    padding: 5px;
+}
+
+.indexHeader {
+    color: maroon;
+}
+
+.aboutMe {
+    margin-left: 150px;
+    font-size: medium;
+}
+
+.aboutHeader {
+    color: darkblue;
+}
+
+#jumboHeader {
+    font-family: 'Jua';
+}
+
+.jumbotron {
+    background-color: burlywood;
+}

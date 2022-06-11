@@ -1,0 +1,150 @@
+﻿@model DBProg_A3.Models.UpsertInvoiceModel
+
+@{
+    ViewBag.Title = "Upsert An Invoice";
+}
+
+<h2>Add An Invoice</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-horizontal">
+    @*<h4>Invoice</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.HiddenFor(gm => gm.Invoice.InvoiceID)
+    </div>
+
+    @*Allows the user to choose a customer from a datalist*@
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(gm => gm.Invoice.CustomerID, new { htmlAttributes = new { @class = "form-control" } })*@
+
+            <input list="customers" name="CustomerName" class="stateName" />
+            <datalist id="customers">
+                @foreach (var customer in Model.Customers)
+                {
+                    if (!customer.IsDeleted)
+                    {
+                        <option value="@customer.Name (@customer.CustomerID)" />
+                    }
+                }
+            </datalist>
+
+            @Html.ValidationMessageFor(gm => gm.Invoice.CustomerID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.InvoiceDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(gm => gm.Invoice.InvoiceDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(gm => gm.Invoice.InvoiceDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.ProductTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(gm => gm.Invoice.ProductTotal, new { htmlAttributes = new { @class = "form-control", id = "m1" } })
+            @Html.ValidationMessageFor(gm => gm.Invoice.ProductTotal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.SalesTax, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(gm => gm.Invoice.SalesTax, new { htmlAttributes = new { @class = "form-control", id = "m2" } })
+            @Html.ValidationMessageFor(gm => gm.Invoice.SalesTax, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.Shipping, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(gm => gm.Invoice.Shipping, new { htmlAttributes = new { @class = "form-control", id = "m3" } })
+            @Html.ValidationMessageFor(gm => gm.Invoice.Shipping, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.InvoiceTotal, "CLICK THE BUTTON =>", htmlAttributes: new { @class = "control-label col-md-2", id = "calcAdd" })
+        <div class="col-md-10">
+            @*@Html.EditorFor(gm => gm.Invoice.InvoiceTotal, new { htmlAttributes = new { @class = "form-control", id = "m4" } })*@
+            <input type="button" value="Add" class="btn btn-primary" onclick="apiHandler2.Calc();" />
+            @*@Html.ValidationMessageFor(gm => gm.Invoice.InvoiceTotal, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(gm => gm.Invoice.InvoiceTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(gm => gm.Invoice.InvoiceTotal, new { htmlAttributes = new { @class = "form-control", id = "m4" } })
+            @*<input type="button" value="Add" class="btn btn-primary" onclick="apiHandler.Calc();" />*@
+            @Html.ValidationMessageFor(gm => gm.Invoice.InvoiceTotal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(gm => gm.Invoice.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(gm => gm.Invoice.IsDeleted)
+                    @Html.ValidationMessageFor(gm => gm.Invoice.IsDeleted, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    @*<input type="text" id="m1" />
+        <input type="text" id="m2" />
+        <input type="text" id="m3" />
+        <input type="button" value="Add" class="btn btn-primary" onclick="apiHandler.Calc();" />*@
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="button" value="Delete" class="btn btn-danger" onclick="apiHandler.DELETE('/Invoices/Delete/@Model.Invoice.InvoiceID');" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "/AllInvoices/")
+</div>
+
+@*<script src="~/Scripts/main.js"></script>*@
+@*<script src="~/Scripts/calc.js"></script>*@
+
+
+
+@*<script>
+    var apiHandler = {
+        Calc: function () {
+        //var s1 = $("#s1").val();
+        //var s2 = $("#s2").val();
+
+            var m1 = $("#m1").val();
+            var m2 = $("#m2").val();
+            var m3 = $("#m3").val();
+
+            $.get("/Calc/Add/?s1=" + m1 + "&s2=" + m2 + "&s3=" + m3, function (data) {
+            //$(".result").html(data);
+            //alert("Load was performed.");
+            //debugger;
+            //alert(data);
+            $("#m4").val(data);
+            debugger;
+
+        });
+    }
+   };
+</script>*@

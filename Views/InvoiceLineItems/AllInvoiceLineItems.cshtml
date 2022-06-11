@@ -1,0 +1,60 @@
+﻿@model List<DBProg_A3.Models.InvoiceLineItem>
+@{
+    ViewBag.Title = "AllInvoiceLineItems";
+}
+
+<h2>Invoice Line Items Register</h2>
+
+@*Link to add an invoice line item*@
+<a class="addNew" href="/InvoiceLineItems/UpsertInvoiceLineItem">Add New</a>
+
+@*Search and sort invoice line item*@
+<div class="row">
+    <div class="col-md-3">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Enter what to search" />
+    </div>
+    <div class="col-md-9">
+        <input id="txtSearchBtn" type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+@*Table to create all invoice line items view*@
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th class="cellHeading" onclick="Sortable.Sort(0);">Invoice ID</th>
+            <th class="cellHeading" onclick="Sortable.Sort(1);">Product Code</th>
+            <th class="cellHeading" onclick="Sortable.Sort(2);">Unit Price</th>
+            <th class="cellHeading" onclick="Sortable.Sort(3);">Quantity</th>
+            <th class="cellHeading" id="totalItem" onclick="Sortable.Sort(4);">Item Total</th>
+            <th class="cellHeading">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoiceLineItem in Model)
+        {
+            <tr>
+                <td>@invoiceLineItem.InvoiceID</td>
+                <td>@invoiceLineItem.ProductCode</td>
+                <td>@invoiceLineItem.UnitPrice.ToString("C")</td>
+                <td>@invoiceLineItem.Quantity</td>
+                <td>@invoiceLineItem.ItemTotal.ToString("C")</td>
+                <td>
+                    <a href="/InvoiceLineItems/UpsertInvoiceLineItem/?invoiceId=@invoiceLineItem.InvoiceID&productCode=@invoiceLineItem.ProductCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a href="/Invoices/AllInvoices/">Back to Invoice Page</a>
+</div>
+
+<script>
+    Sortable.baseUrl = '/InvoiceLineItems/AllInvoiceLineItems/';
+</script>
+
+
+
+
