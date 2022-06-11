@@ -45,7 +45,7 @@ namespace DBProg_A3.Controllers
 
             // create a payment from Square
             var amountMoney = new Money.Builder()
-                              .Amount(850L)
+                              .Amount(950L)
                               .Currency("USD")
                               .Build();
 
